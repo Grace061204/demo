@@ -1,10 +1,11 @@
-com\demo\DemoApplication.class
+com\demo\demo\DemoApplication.class
 com\demo\demo\vehicule\model\annonce\Annonce.class
 com\demo\demo\api\ListAPI.class
 com\demo\demo\api\APIResponse.class
 com\demo\demo\vehicule\controller\annonce\AnnonceController.class
 com\demo\demo\Controller.class
 com\demo\demo\vehicule\repository\annonce\AnnonceRepository.class
+com\demo\demo\ServletInitializer.class
 com\demo\demo\vehicule\service\annonce\AnnonceService.class
 com\demo\MongoConfig.class
 com\demo\demo\vehicule\model\annonce\Favori.class
