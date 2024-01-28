@@ -1,6 +1,7 @@
 com\demo\demo\DemoApplication.class
 com\demo\demo\vehicule\service\categorie\CategorieService.class
 com\demo\demo\vehicule\model\annonce\Annonce.class
+com\demo\demo\vehicule\service\marque\MarqueService.class
 com\demo\demo\api\APIResponse.class
 com\demo\demo\vehicule\controller\annonce\AnnonceController.class
 com\demo\demo\Controller.class
@@ -8,8 +9,11 @@ com\demo\demo\vehicule\model\categorie\Categorie.class
 com\demo\demo\vehicule\repository\annonce\AnnonceRepository.class
 com\demo\demo\vehicule\controller\categorie\CategorieController.class
 com\demo\demo\vehicule\service\annonce\AnnonceService.class
+com\demo\demo\vehicule\model\marque\Marque.class
 com\demo\MongoConfig.class
 com\demo\demo\vehicule\model\annonce\Favori.class
 com\demo\demo\api\ListAPI.class
 com\demo\demo\vehicule\repository\categorie\CategorieRepository.class
 com\demo\demo\ServletInitializer.class
+com\demo\demo\vehicule\controller\marque\MarqueController.class
+com\demo\demo\vehicule\repository\marque\MarqueRepository.class
