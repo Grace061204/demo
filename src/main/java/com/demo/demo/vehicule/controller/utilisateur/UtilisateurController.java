@@ -55,8 +55,9 @@ public class UtilisateurController {
                 Token token = new Token();
                 token.setCle((String) map.get("cle"));
                 token.setToken((String) map.get("token"));
-                token.setDatecreation(new Date(((java.util.Date) map.get("date")).getTime()));
-                token.setDateexpiration(new Date(((java.util.Date) map.get("expirer")).getTime()));
+                token.setDatecreation(Date.valueOf(map.get("date").toString()));
+                token.setDateexpiration(Date.valueOf(map.get("expirer").toString()));
+
                 
                 tokenService.createToken(token);
 
@@ -66,10 +67,7 @@ public class UtilisateurController {
                 return ResponseEntity.ok(api);
 
         }
-        else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new APIResponse("Authentication failed", false));
-
-        }
     } catch (Exception e) { 
         APIResponse response = new APIResponse("Internal Server Error: " + e.getMessage(), false);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
@@ -78,15 +76,15 @@ public class UtilisateurController {
 
 
     @PostMapping("/logout")
-    public ResponseEntity<?> logout(@RequestHeader("authorization") String token) {
+    public ResponseEntity<?> logout(@RequestHeader("Authorization") String token) {
     try {
         // Utilisateur verif = utilisateurService.findByEmailAndMdp(utilisateur.getEmail(), utilisateur.getMdp());
 
                 // Map<String, Object> map = utilisateurService.generateToken(verif);
                 
-                List<Token> listTokens = tokenService.getByToken(token);
+                Token listTokens = tokenService.getByToken(token);
                 if(listTokens!=null){
-                    tokenService.deleteToken(listTokens.get(0));
+                    tokenService.deleteToken(listTokens);
                     return ResponseEntity.ok(new APIResponse("logout success", true));
 
                 }

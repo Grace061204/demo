@@ -1,5 +1,6 @@
 package com.demo.demo.vehicule.service.utilisateur;
 
+import com.demo.demo.vehicule.model.utilisateur.Token;
 import com.demo.demo.vehicule.model.utilisateur.Utilisateur;
 import com.demo.demo.vehicule.repository.utilisateur.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,9 @@ import io.jsonwebtoken.security.Keys;
 
 
 import java.util.Base64;
-import java.util.Date;
+import java.util.Calendar;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,8 +69,8 @@ public class UtilisateurService {
         return utilisateurRepository.findByEmailAndMdp(email, mdp);
     }
 
-    public static Claims extractClaims(String jwtToken, String secretKey) {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(jwtToken).getBody();
+    public Claims extractClaims(Token token) {
+        return Jwts.parser().setSigningKey(token.getCle()).parseClaimsJws(token.getToken()).getBody();
     }
 
 
@@ -77,12 +80,13 @@ public class UtilisateurService {
     }
 
     public Map<String, Object> generateToken(Utilisateur utilisateur) {
-        Date now = new Date();
-        long jwtExpirationInMs = TimeUnit.MINUTES.toMillis(120);
-        Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+        Date now =Date.valueOf(LocalDate.now());
+        long jwtExpirationInMs = TimeUnit.DAYS.toMillis(2);
+        Date expiryDate =addDaysToSqlDate(now,1);
         String cle = generateSecretKey();
         Claims claims = Jwts.claims().setSubject(Long.toString(utilisateur.getId()));
         claims.put("type", utilisateur.getTypeUtilisateur());
+        claims.put("iduser",utilisateur.getId());
         String token = Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
@@ -96,4 +100,16 @@ public class UtilisateurService {
         response.put("expirer", expiryDate);
         return response;
     }
+
+    
+public static Date addDaysToSqlDate(Date sqlDate, int daysToAdd) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(sqlDate);
+
+        calendar.add(Calendar.DAY_OF_MONTH, daysToAdd);
+
+        long newSqlDateMilliseconds = calendar.getTimeInMillis();
+        return new java.sql.Date(newSqlDateMilliseconds);
+    }
+    
 }
