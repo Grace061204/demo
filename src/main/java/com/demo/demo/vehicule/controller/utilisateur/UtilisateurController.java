@@ -59,7 +59,11 @@ public class UtilisateurController {
                 token.setDateexpiration(new Date(((java.util.Date) map.get("expirer")).getTime()));
                 
                 tokenService.createToken(token);
-                return ResponseEntity.ok(new APIResponse("Authentication successful", token.getToken()));
+
+                APIResponse api = new APIResponse("Authentication successful", token.getToken());
+                api.setStatus_code("200");
+                
+                return ResponseEntity.ok(api);
 
         }
         else{
