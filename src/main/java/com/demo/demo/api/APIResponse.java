@@ -13,7 +13,17 @@ public class APIResponse {
 
     Object data;
 
+    String status_code;
+
     
+
+    public String getStatus_code() {
+        return status_code;
+    }
+
+    public void setStatus_code(String status_code) {
+        this.status_code = status_code;
+    }
 
     public Object getData() {
         return data;
