@@ -3,6 +3,8 @@ package com.demo.demo.vehicule.controller.categorie;
 import com.demo.demo.api.APIResponse;
 import com.demo.demo.vehicule.model.categorie.Categorie;
 import com.demo.demo.vehicule.service.categorie.CategorieService;
+import com.demo.demo.vehicule.service.utilisateur.TokenService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +18,19 @@ import java.util.Optional;
 public class CategorieController {
 
     public CategorieService categorieService;
+    public TokenService tokenService;
 
-    public CategorieController(CategorieService categorieService){
+
+    public CategorieController(CategorieService categorieService,TokenService tokenService){
         this.categorieService = categorieService;
+        this.tokenService = tokenService;
     }
 
     @PostMapping("/")
-    public ResponseEntity<APIResponse> createCategorie(@RequestBody Categorie categorie) {
+    public ResponseEntity<APIResponse> createCategorie(@RequestBody Categorie categorie,@RequestHeader("Authorization") String token) {
         try {
+            tokenService.verifAuth(token);
+
             Categorie createdCategorie = categorieService.createCategorie(categorie);
             return ResponseEntity.ok(new APIResponse("", createdCategorie));
         } catch (Exception e) {
@@ -33,8 +40,10 @@ public class CategorieController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<APIResponse> getAllCategories() {
+    public ResponseEntity<APIResponse> getAllCategories(@RequestHeader("Authorization") String token) {
         try {
+            tokenService.verifAuth(token);
+            
             List<Categorie> categories = categorieService.getAllCategories();
             return ResponseEntity.ok(new APIResponse("", categories));
         } catch (Exception e) {
@@ -44,8 +53,10 @@ public class CategorieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<APIResponse> getCategorieById(@PathVariable int id) {
+    public ResponseEntity<APIResponse> getCategorieById(@PathVariable int id,@RequestHeader("Authorization") String token) {
         try {
+            tokenService.verifAuth(token);
+
             Optional<Categorie> categorie = categorieService.getCategorieById(id);
             if (categorie.isPresent()) {
                 return ResponseEntity.ok(new APIResponse("", categorie.get()));
@@ -59,8 +70,10 @@ public class CategorieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<APIResponse> updateCategorie(@PathVariable int id, @RequestBody Categorie categorie) {
+    public ResponseEntity<APIResponse> updateCategorie(@PathVariable int id, @RequestBody Categorie categorie,@RequestHeader("Authorization") String token) {
         try {
+            tokenService.verifAuth(token);
+
             Categorie updatedCategorie = categorieService.updateCategorie(id, categorie);
             if (updatedCategorie != null) {
                 return ResponseEntity.ok(new APIResponse("", updatedCategorie));
@@ -74,8 +87,10 @@ public class CategorieController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<APIResponse> deleteCategorie(@PathVariable int id) {
+    public ResponseEntity<APIResponse> deleteCategorie(@PathVariable int id,@RequestHeader("Authorization") String token) {
         try {
+            tokenService.verifAuth(token);
+
             categorieService.deleteCategorie(id);
             return ResponseEntity.ok(new APIResponse("", true));
         } catch (Exception e) {
