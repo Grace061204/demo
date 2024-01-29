@@ -1,5 +1,6 @@
 com\demo\demo\vehicule\service\categorie\CategorieService.class
 com\demo\demo\vehicule\model\annonce\Annonce.class
+com\demo\demo\vehicule\model\annonce\Statistique.class
 com\demo\demo\vehicule\repository\utilisateur\TokenRepository.class
 com\demo\demo\api\APIResponse.class
 com\demo\demo\vehicule\controller\categorie\CategorieController.class

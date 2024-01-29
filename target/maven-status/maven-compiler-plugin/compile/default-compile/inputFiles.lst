@@ -4,6 +4,7 @@ D:\spring-boot\demo\src\main\java\com\demo\demo\vehicule\service\annonce\Annonce
 D:\spring-boot\demo\src\main\java\com\demo\demo\vehicule\repository\utilisateur\TokenRepository.java
 D:\spring-boot\demo\src\main\java\com\demo\demo\vehicule\controller\marque\MarqueController.java
 D:\spring-boot\demo\src\main\java\com\demo\demo\vehicule\service\categorie\CategorieService.java
+D:\spring-boot\demo\src\main\java\com\demo\demo\vehicule\model\annonce\Statistique.java
 D:\spring-boot\demo\src\main\java\com\demo\demo\vehicule\repository\utilisateur\UtilisateurRepository.java
 D:\spring-boot\demo\src\main\java\com\demo\demo\vehicule\model\annonce\Annonce.java
 D:\spring-boot\demo\src\main\java\com\demo\demo\vehicule\controller\annonce\AnnonceController.java

@@ -16,7 +16,7 @@ public class Annonce {
     private Date dateVente;
     private int status;
     private String image;
-    private int idproprietaire; // Modification du type de String à int
+    private int prop; // Modification du type de String à int
     private List<Favori> favoris;
     private int estValide;
 
@@ -24,7 +24,7 @@ public class Annonce {
     }
 
     public Annonce(String titre, String description, String categorie, String marque, double prix,
-                   Date dateAjout, Date dateVente, int status, String image, int idproprietaire,
+                   Date dateAjout, Date dateVente, int status, String image, int prop,
                    List<Favori> favoris, int estValide) {
         this.titre = titre;
         this.description = description;
@@ -35,7 +35,7 @@ public class Annonce {
         this.dateVente = dateVente;
         this.status = status;
         this.image = image;
-        this.idproprietaire = idproprietaire;
+        this.prop = prop;
         this.favoris = favoris;
         this.estValide = estValide;
     }
@@ -120,12 +120,12 @@ public class Annonce {
         this.image = image;
     }
 
-    public int getIdproprietaire() {
-        return idproprietaire;
+    public int getProp() {
+        return prop;
     }
 
-    public void setIdproprietaire(int idproprietaire) {
-        this.idproprietaire = idproprietaire;
+    public void setProp(int prop) {
+        this.prop = prop;
     }
 
     public List<Favori> getFavoris() {
