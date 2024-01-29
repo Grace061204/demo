@@ -27,6 +27,9 @@ public class CategorieService {
         return categorieRepository.findById(id);
     }
 
+
+    // public 
+
     public Categorie updateCategorie(int id, Categorie newCategorie) {
         Optional<Categorie> optionalCategorie = categorieRepository.findById(id);
         if (optionalCategorie.isPresent()) {
@@ -37,6 +40,8 @@ public class CategorieService {
             return null;
         }
     }
+
+
 
     public void deleteCategorie(int id) {
         categorieRepository.deleteById(id);

@@ -11,6 +11,7 @@ public interface AnnonceRepository extends MongoRepository<Annonce, String> {
     List<Annonce> findByStatusAndEstValide(int status, int estValide);
     List<Annonce> findByEstValide(int estValide);
 
-    List<Annonce> findByIdproprietaire(int idproprietaire);
+    List<Annonce> findByProp(int prop);
     Optional<Annonce> findById(String id);
+    List<Annonce> findByCategorie(String categorie);
 }
