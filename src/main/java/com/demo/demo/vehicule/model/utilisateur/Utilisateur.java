@@ -19,14 +19,14 @@ public class Utilisateur {
 
     private String nom;
 
-    @Column(name = "date_naissance")
+    @Column(name = "datenaissance")
     private Date dateNaissance;
 
     private String email;
 
     private String mdp;
 
-    @Column(name = "type_utilisateur")
+    @Column(name = "typeutilisateur")
     private int typeUtilisateur;
 
     public Long getId() {

@@ -24,8 +24,9 @@ public class MarqueController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<APIResponse> createMarque(@RequestBody Marque marque) {
+    public ResponseEntity<APIResponse> createMarque(@RequestBody Marque marque,@RequestHeader("authorization") String token) {
         try {
+            
             Marque createdMarque = marqueService.createMarque(marque);
             return ResponseEntity.ok(new APIResponse("Marque créée avec succès", createdMarque));
         } catch (Exception e) {
