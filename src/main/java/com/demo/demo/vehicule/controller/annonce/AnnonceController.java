@@ -37,6 +37,18 @@ public class AnnonceController {
         }
     }
 
+    @GetMapping("/nonvalide")
+    public ResponseEntity<APIResponse> getAnnonceNonValide() {
+        try {
+            List<Annonce> nonVendu = annonceService.getAnnoncesNonVendues();
+            return ResponseEntity.ok(new APIResponse("", nonVendu));
+        } catch (Exception e) {
+            // TODO: handle exception
+            APIResponse response = new APIResponse(": " + e.getMessage(), false);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
     @GetMapping("/proprietaire/{proprietaire}")
     public ResponseEntity<APIResponse> getAnnoncesByProprietaire(@PathVariable int proprietaire) {
         try {

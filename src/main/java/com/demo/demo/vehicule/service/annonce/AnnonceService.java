@@ -25,6 +25,15 @@ public class AnnonceService {
         return annonceRepository.findByIdproprietaire(propietaire);
     }
 
+
+    public List<Annonce> getAnnoncesNonValide() {
+        return annonceRepository.findByEstValide(0);
+    }
+
+    public List<Annonce> getAnnoncesValide() {
+        return annonceRepository.findByEstValide(1);
+    }
+
     public Annonce insertAnnonce(Annonce annonce) {
         return annonceRepository.save(annonce);
     }
